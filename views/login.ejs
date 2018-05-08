@@ -1,0 +1,31 @@
+<% include partials/head %>
+    <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div class="reg-container">
+                   <div class="error-msg">
+                        <% if(error && error.length > 0){ %>
+                             <p><i class="fas fa-exclamation-circle"></i><%= error %><p>
+                       <% } %>
+                   </div>
+                   <div id="register-form">
+                        <div class="header">
+                            ACCOUNT LOGIN
+                        </div>
+                        <form action="/login" method="POST" class="login">
+                              <div class="form-group">
+                                    <label for="userID">Username</label>
+                                    <input type="text" class="form-control" name="username" placeholder="Username">
+                              </div>
+                              <div class="form-group">
+                                    <label for="userPassword">Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                              </div>
+                              <button type="submit" class="btn button-main">LOGIN</button>
+                        </form>
+                   </div> 
+                </div>
+           </div>
+       </div>
+   </div>
+<% include partials/footer %>

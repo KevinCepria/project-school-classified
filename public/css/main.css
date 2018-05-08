@@ -1,0 +1,406 @@
+body{
+    background: url(../images/bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Bowlby One SC";
+}
+
+a{
+    cursor:pointer;
+}
+
+.jumbotron {
+    
+    margin-top: 70px;
+}
+
+/* 
+===============================
+        school thems 
+===============================
+  */
+
+.dlsu{
+    background:#00703C ;
+    color: white;
+}
+
+.dlsu-button{
+   margin-top: 5px;
+   background: white;
+   border: solid 1px #00703C;
+   border-radius: 5px;
+   color:#00703C;
+   transition: all 0.3s;
+   position: relative;
+}
+
+.dlsu-button:hover, .dlsu-button:focus, .dlsu-button:active{
+   background: #00703C;
+   color:white;
+   outline: 0;
+   border: solid 1px #00703C;
+}
+
+.dlsu-text,.dlsu-text:hover, .dlsu-text:visited{
+    color:#00703C;
+}
+
+
+.up{
+    background:#7b1113 ;
+    color: white;
+}
+
+.up-button{
+   margin-top: 5px;
+   background: white;
+   border: solid 1px #7b1113;
+   border-radius: 5px;
+   color:#7b1113;
+   transition: all 0.3s;
+   position: relative;
+}
+
+.up-button:hover, .up-button:focus, .up-button:active{
+   background: #7b1113;
+   color:white;
+   outline: 0;
+   border: solid 1px #7b1113;
+}
+
+.up-text,.up-text:hover, .up-text:visited{
+    color:#7b1113;
+}
+
+.admu{
+    background:#092972 ;
+    color: white;
+}
+
+.admu-button{
+   margin-top: 5px;
+   background: white;
+   border: solid 1px #092972;
+   border-radius: 5px;
+   color:#092972;
+   transition: all 0.3s;
+   position: relative;
+}
+
+.admu-button:hover, .admu-button:focus, .admu-button:active{
+   background: #092972;
+   color:white;
+   outline: 0;
+   border: solid 1px #092972;
+}
+
+.admu-text,.admu-text:hover, .admu-text:visited{
+    color:#092972;
+}
+
+
+.ust{
+    background:#fdcd3d ;
+    color: white;
+}
+
+.ust-button{
+   margin-top: 5px;
+   background: white;
+   border: solid 1px #fdcd3d;
+   border-radius: 5px;
+   color:#fdcd3d;
+   transition: all 0.3s;
+   position: relative;
+}
+
+.ust-button:hover, .ust-button:focus, .ust-button:active{
+   background:#fdcd3d;
+   color:white;
+   outline: 0;
+   border: solid 1px #fdcd3d;
+}
+
+.ust-text,.ust-text:hover, .ust-text:visited{
+    color:#fdcd3d;
+}
+
+/*
+================================== 
+      end of school themes 
+==================================
+*/
+.post{
+    font-family: "Noto Sans";
+}
+.post-detail {
+   font-family: "Roboto";
+   padding: 15px 25px;  
+}
+
+.post-detail h1 a{
+    color:white;
+    text-decoration: none;
+}
+
+.post-detail h1 a:hover, .post-detail h1 a:visited, .post-detail h1 a:focus, .post-detail h1 a:active{
+    font-weight: bolder;
+}
+
+
+.post-detail h1{
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+.post-detail i{
+    color:white;
+    font-size: 18px;
+    padding-right: 3px;
+}
+
+.post-detail span{
+    padding-right: 8px;
+}
+
+.comment-right{
+    float: right;
+}
+
+
+.vote-container{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.vote-container span{
+     font-size: 15px;
+     color:white;
+}
+
+.post-detail .time-origin{
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+}
+
+.post-content{
+    background: white;
+    padding: 15px 25px;
+    margin:0;
+    font-size: 16px;
+    color: rgba(0,0,0,0.8);
+    border: solid 1px rgba(0,0,0,0.05);
+     
+}
+
+.post-content p, .comment-content p{
+    white-space: pre-line;
+}
+
+
+.thumbnail{
+    padding:0;
+}
+
+.comment-header{
+    margin-bottom: 20px;
+    display: inline-block;
+    width:100%;
+    border-bottom:  solid 1px rgba(0,0,0,0.3);
+}
+
+
+.comment-numbers{
+    float:left;
+}
+.comment-tabs{
+    display: block;
+    float: right;
+}
+.comment-form{
+    display: block;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.comment-form [type=submit], .reply-form [type=submit] {
+    
+  margin-top: 5px;
+    
+}
+
+.comment-entry{
+    margin-bottom: 25px;
+}
+
+.like-button{
+    margin-left: 3px;
+    margin-right: 8px;
+}
+.like-button, .like-button a{
+    color: rgba(0, 130, 0,0.8);
+}
+
+
+
+.dislike-button, .dislike-button a{
+    color:rgba(242, 58, 58,0.8);
+}
+
+.reply-form{
+    
+    display: none;
+    text-align: right;
+}
+.reply-entry, .with-comments{
+    margin-bottom: 11px;
+}
+
+.time-stamp{
+    color: rgba(0,0,0, 0.5);
+    font-size: 12px;
+}
+.comment-content{
+    padding-left: 0;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.user-comment-img img{
+    display:block;
+    width: 55px;
+    height: 55px;
+    margin: 0 10px;
+    border-radius: 15px;
+    float:left;
+}
+
+.reply-button{
+    margin-bottom: 5px;
+}
+.user-reply-img img{
+    display:block;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-right: 12px;
+    float: left;
+    
+}
+
+
+ .navbar-brand{
+     padding : 0 8px 5px 5px;
+ }
+ .navbar-brand img{
+     display: inline-block;
+     width:50px;
+     height:50px;
+ }
+ 
+/*
+================================== 
+      css for register form
+==================================
+*/
+ .reg-container{
+     top: 20vh;
+     position: relative;
+ }
+ #register-form {
+      
+      margin: auto;
+      border: solid 1px rgba(0,0,0,0.2);
+      position: relative;
+      padding: 0 ;
+      border-radius: 10px;
+      box-shadow: 5px 5px 8px 3px rgba(0,0,0,0.6);
+      }
+ 
+ #register-form .header{
+      text-align: center;
+      padding: 10px;
+      font-size: 30px !important;
+      background-color: #222;
+      color: #c9c7c7;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+ }
+ 
+  #register-form form{
+      padding: 15px;
+  }
+  
+  .button-main, .button-main:hover,.button-main:focus{
+      font-size: 20px;
+      width: 100%;
+      color: white;
+      background-color: #005b31;
+      padding: 10px 0;
+      border-style:none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+  }
+  
+ 
+  input, select, textarea, .counter,.max-char,.text-right{
+      font-family: "Roboto";
+      font-weight: bold;
+  }
+  
+  #register-form span{
+      font-size:11px;
+  }
+  
+  .error-msg {
+      
+      background: rgba(255,0,0, 0.15);
+      color:  rgba(255,0,0, 0.7);
+      font-family: 'Roboto';
+      font-size: 16px;
+      margin-bottom: 8px;
+  }
+  
+  .error-msg p{
+      margin: 0 0 0 5px;
+      padding: 8px 8px 0 8px;
+  }
+  
+  .error-msg p i{
+      margin-right: 10px;
+      font-size: 28px;
+      float:left;
+  }      
+
+ 
+ /*Fr
+================================== 
+      css for post form
+==================================
+*/
+
+   #post-form input{
+      font-size: 16px;
+  }
+  
+  #post-form textarea{
+      min-height: 300px;
+      margin: 0;
+      padding: 10px;
+      font-size: 16px;
+  }
+  
+  .counter{
+      padding-left: 10px;
+      color: rgba(0,0,0,0.5)
+  }
+   .max-char,.text-right{
+      color: rgba(0,0,0,0.5)
+  }
+  .text-right{
+      float:right;
+  }
+ 

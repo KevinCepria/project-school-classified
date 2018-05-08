@@ -1,0 +1,35 @@
+db.university.insert({name:"University of Santo Tomas",acronym:"UST"});
+db.university.insert({name:"Far Easter University",acronym:"FEU"});
+db.university.insert({name:"University of the Philippines",acronym:"UP"});
+db.university.insert({name:"University of the East",acronym:"UE"});
+db.university.insert({name:"Ateneo de Manila University",acronym:"ADMU"});
+db.university.insert({name:"Adamson University",acronym:"ADU"});
+db.university.insert({name:"Mapua University",acronym:"MU"});
+db.university.insert({name:"De La Salle Manila",acronym:"DLSU"});
+tup
+pup
+csb
+dlsud
+plm
+st scho
+letran
+lyceum
+nu
+tip
+uplb
+san beda university
+ceu
+uph
+enderun
+others
+
+
+db.university.remove({})
+
+function nl2br (str, is_xhtml) {
+    if (typeof str === 'undefined' || str === null) {
+        return '';
+    }
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}

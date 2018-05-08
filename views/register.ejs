@@ -1,0 +1,43 @@
+<% include partials/head %>
+    <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div class="reg-container">
+                   <div class="error-msg">
+                        <% if(error && error.length > 0){ %>
+                             <p><i class="fas fa-exclamation-circle"></i><%= error %><p>
+                        <% } %>
+                   </div>
+                   <div id="register-form">
+                        <div class="header">
+                            REGISTRATION
+                        </div>
+                        <form action="/register" method="POST" class="register">
+                              <div class="form-group">
+                                    <label for="userID">Username</label><span class="notice-right"></span>
+                                    <input type="text" class="form-control" id="userID" name="username" placeholder="Username (5-20 characters A-Z and 0-9 only)">
+                              </div>
+                              <div class="form-group">
+                                    <label for="userPassword">Password</label><span class="notice-right"></span>
+                                    <input type="password" class="form-control" id="userPassword" name="password" placeholder="Password (minimum of 5 characters A-Z and 0-9 only)">
+                              </div>
+                              <div class="form-group">
+                                    <label for="passwordConfirmation">Re-type Password</label> <span class="notice-right"></span>
+                                    <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirm" placeholder="Retype Password">
+                              </div>
+                              <div class="form-group">
+                                    <label for="userUniversity">Select University/School</label>
+                                    <select class="form-control" name="university" id="userUniversity">
+                                    <% university.forEach(function(university){ %>
+                                        <option><%=university.name%> - <%=university.acronym%></option>
+                                    <% }) %>
+                                    </select>
+                              </div>
+                              <button type="submit" id="reg-button" class="btn button-main">Register</button>
+                        </form>
+                   </div> 
+               </div>
+           </div>
+       </div>
+   </div>
+<% include partials/footer %>

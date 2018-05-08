@@ -1,0 +1,40 @@
+<% include ../partials/head %>
+<div class="container">
+     <div class="jumbotron">
+        <h1>WELCOME TO SCHOOL CLASSIFIED!</h1> 
+     </div>
+   
+     <div class="row">
+           <div class="col-md-3">
+               <h1>sections</h1>
+           </div>
+           <div class="col-md-6">
+               <% posts.forEach(function(posts){ %>
+                   <div class= "post">
+                      <div class="thumbnail <%= String(posts.university.acronym).toLowerCase() %>">
+                           <div class="post-detail">
+                              <h1><a href="/files/<%= posts.university.acronym %>/<%= posts.id %>"><%= posts.title %></a></h1>
+                              <div class="time-origin">
+                                 <span>From <%= posts.university.acronym %> • <%= moment(posts.creationDate).fromNow()%> </span>
+                              </div>
+                           </div>
+                           <div class="post-content">
+                              <p><%= String(posts.content).substring(0, 650) %> ...<a target="_blank" class="<%= String(posts.university.acronym).toLowerCase() %>-text" href="/files/<%= posts.university.acronym %>/<%= posts.id %>"><strong>[Read More]</strong></a></p>
+                           </div>
+                           <div class="post-detail">
+                              <div class="vote-container">
+                                <span><i class="fas fa-thumbs-up fa-2x"></i><%= posts.likes.length %></span>
+                                <span><i class="fas fa-thumbs-down fa-2x"></i><%= posts.dislikes.length %></span>  
+                                <span class="comment-right"><i class="fas fa-comments fa-2x"></i><%= posts.comments.length %></span>  
+                              </div>
+                           </div>
+                       </div>
+                   </div>
+               <% }) %>
+            </div>
+            <div class="col-md-3">
+                <h1>others</h1>
+            </div>
+       </div>
+</div>
+<% include ../partials/footer %>

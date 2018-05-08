@@ -1,0 +1,167 @@
+<% include ../partials/head %>
+<div class="container">
+     <div class="jumbotron">
+        <h1>WELCOME TO SCHOOL CLASSIFIED!</h1> 
+     </div>
+     <%post.university.acronym = post.university.acronym.toLowerCase() %>
+     <div class="row">
+           <div class="col-md-3">
+               <h1>sections</h1>
+           </div>
+           <div class="col-md-6">
+                  <div class= "post">
+                       <div class="thumbnail <%= post.university.acronym %>">
+                           <div class="post-detail">
+                              <h1><%= post.title %></h1>
+                              <div class="time-origin">
+                                 <span>From <%= post.university.acronym.toUpperCase() %> • <%= moment(post.creationDate).fromNow()%> </span>
+                              </div>
+                           </div>
+                           <div class="post-content">
+                              <p><%= post.content %></p>
+                           </div>
+                           <div class="post-detail">
+                                 <h1>UP POST</h1>
+                           </div>
+                       </div>
+                       <div class="comment-section">
+                             <div class="comment-header">
+                                <div class="comment-numbers">
+                                   <h4><strong><%= post.comments.length %> comments</strong></h4>
+                                </div>
+                                <div class="text-right comment-tabs">
+                                   <ul class="nav nav-tabs ">
+                                      <li role="presentation" class="active"><a href="#">Hot</a></li>
+                                      <li role="presentation"><a href="#">Newest</a></li>
+                                      <li role="presentation"><a href="#">Oldest</a></li>
+                                   </ul>
+                                </div>
+                             </div>
+                             <div class="error-msg">
+                                  <% if(error && error.length > 0){ %>
+                                     <p><i class="fas fa-exclamation-circle"></i><%= error %><p>
+                                  <% } %>
+                             </div>
+                             <div class="comment-form">
+                                   <form method="POST" action="/files/<%= post.university.acronym.toUpperCase() %>/<%= post.id %>/comments">
+                                        <textarea class="form-control" name="comment[content]" placeholder="Type your comment here..." rows="3"></textarea>
+                                        
+                                        <button class="btn btn-primary btn-md <%= post.university.acronym %>-button" > Comment <i class="fas fa-comments fa-lg" ></i></button>
+                                   </form>
+                             </div>
+                             <div class="comments">
+                                   <% post.comments.forEach(function(data){ %>
+                                       <div class="row comment-entry">
+                                            <div class="user-comment-img">
+                                               <img src="https://euroshop.wwe.com/on/demandware.static/-/Sites-wwe-euro-navigation/default/dw2a6de264/images/superstar-thumb-300/john-cena-2017.jpg"></img>
+                                            </div>
+                                            <div class="comment-content">
+                                               <div>
+                                                   <a class="<%= post.university.acronym %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span>
+                                                   <p> <%=data.content%></p>
+                                               </div>
+                                               <div class="reply-button">
+                                                   <a href="#" class="btn btn-primary btn-sm <%= post.university.acronym %>-button ">Reply</a> 
+                                                   <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> <%= data.likes.length %> </span>
+                                                   <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a><%= data.dislikes.length %></span>
+                                               </div>
+                                               <% if (data.replies.length == 0){ %>
+                                                   <div class="reply-form">
+                                                       <form>
+                                                           <textarea class="form-control" rows="2"></textarea>
+                                                           <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= post.university.acronym %>-button" value="Post"></input>
+                                                       </form>
+                                                   </div>
+                                               <% } %>
+                                            </div>
+                                        </div>
+                                    <% }) %>
+                                    <div class="row comment-entry">
+                                        <div class="user-comment-img">
+                                           <img src="data:image/jpeg;base64,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"></img>
+                                        </div>
+                                        <div class="comment-content">
+                                           <div>
+                                               <a class="dlsu-text"><strong>Evil Patrick</strong></a><span class="time-stamp"><strong> • 8h ago</strong></span>
+                                               <p> Everyone is loved when they die. Idk if this is a trend in modern day society to gain acceptance or seek attention, or if they truly feel saddened by their passing. And I have a hard time believing the latter</p>
+                                           </div>
+                                           <div class="reply-button">
+                                               <a href="#" class="btn btn-primary btn-sm btn-sm dlsu-button">Reply</a> 
+                                               <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> 531</span>
+                                               <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a> 21</span>
+                                           </div>
+                                           <div class="reply-form">
+                                                  <form>
+                                                       <textarea class="form-control" rows="2"></textarea>
+                                                       <input type="submit"  class="btn btn-primary btn-sm btn-sm dlsu-button" value="Post"></input>
+                                                  </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row comment-entry">
+                                        <div class="user-comment-img">
+                                           <img src="http://www.boldrimpact.com/app/uploads/2017/07/Ryan-Liwag-BW-com.jpg?x52261"></img>
+                                        </div>
+                                        <div class="comment-content">
+                                           <div >
+                                               <a class="dlsu-text"><strong>Ryan Liwag</strong></a><span class="time-stamp"><strong> • 8h ago</strong></span>
+                                               <p> Honestly it’s a nice one, but i think it’s not the truth. He was one of the greatest minds who ever lived on this planet, but even the greatest die at some point. 
+                                                   Dr. Hawking isn’t in heaven or in the stars now, he as a person and his mind got nonexistent forever. Just the remembrance of him will last as long as there will be humans.</p>
+                                               <div class="with-comments">
+                                                    <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> 531</span>
+                                                    <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a> 21</span>
+                                               </div>
+                                           </div>
+                                           <div class="replies">
+                                              <div class="row reply-entry">
+                                                 <div class=" user-reply-img">
+                                                    <img src= "data:image/jpeg;base64,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"></img>      
+                                                 </div>
+                                                 <div class="comment-content">
+                                                    <div>
+                                                        <a class="dlsu-text"><strong>Anfernee Rapio</a></strong><span class="time-stamp"><strong> • 8h ago</strong></span>
+                                                        <p> Bakit ang dami mong alam?</p>
+                                                    </div>
+                                                    <div>
+                                                        <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> 531</span>
+                                                        <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a> 21</span>
+                                                    </div>
+                                                 </div>
+                                             </div>
+                                             <div class="row reply-entry">
+                                                 <div class="user-reply-img">
+                                                    <img src= "https://www.instantchess.com/scripts/getpic?ID=3886063"></img>      
+                                                 </div>
+                                                 <div class="comment-content">
+                                                    <div>
+                                                        <a class="dlsu-text"><strong>Ejnar Azarraga</strong></a><span class="time-stamp"><strong> • 8h ago</strong></span>
+                                                        <p> Imma fuccboi</p>
+                                                    </div>
+                                                    <div>
+                                                        <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> 531</span>
+                                                        <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a> 21</span>
+                                                    </div>
+                                                 </div>
+                                             </div>
+                                             <div class="reply-button">
+                                               <a href="#" class="btn btn-primary btn-sm btn-sm dlsu-button">Reply</a>
+                                             </div>
+                                             <div class="reply-form">
+                                                  <form>
+                                                       <textarea class="form-control" rows="2"></textarea>
+                                                       <input type="submit"  class="btn btn-primary btn-sm btn-sm dlsu-button" value="Post"></input>
+                                                  </form>
+                                              </div>
+                                           </div>
+                                        </div>
+                                   </div>
+                              </div>
+                       </div>
+                  </div>
+            </div>
+            <div class="col-md-3">
+                 <h1>Others</h1>
+            </div>
+       </div>
+</div>
+<% include ../partials/footer %>

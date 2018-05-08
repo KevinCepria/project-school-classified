@@ -1,0 +1,38 @@
+<% include ../partials/head %>
+<div class="container">
+     <div class="jumbotron">
+        <h1>WELCOME TO SCHOOL CLASSIFIED!</h1> 
+     </div>
+   
+     <div class="row">
+           <div class="col-md-3">
+               <h1>sections</h1>
+           </div>
+           <div class="col-md-6">
+               <div class="error-msg">
+                    <% if(error && error.length > 0){ %>
+                         <p><i class="fas fa-exclamation-circle"></i><%= error %><p>
+                    <% } %>
+               </div>
+               <div id="post-form">
+                    <h1>Create a Post</h1>
+                    <form method="POST" action="/files">
+                          <div class="form-group">
+                              <input type="text" class="form-control" name="title" placeholder="Title"></input>
+                          </div>
+                          <div class="form-group">
+                              <textarea type="text" class="form-control" row="8" name="content" placeholder="Write your story here..."></textarea>
+                               <span class="counter">0</span><span class="max-char">/15000</span>
+                               <span class="text-right">min. characters: 800</span>
+                          </div>
+                              <button type="submit" class="btn button-main">Post</button>
+                    </form>
+                </div> 
+            </div>
+            <div class="col-md-3">
+                <h1>others</h1>
+            </div>
+       </div>
+</div>
+
+<% include ../partials/footer %>
