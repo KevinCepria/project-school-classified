@@ -49,7 +49,47 @@
                                         <button class="btn btn-primary btn-md <%= post.university.acronym %>-button" > Comment <i class="fas fa-comments fa-lg" ></i></button>
                                    </form>
                              </div>
+                             
+                             <% if(currentUser){  %>
+                                 <% let myComments = (post.comments.filter(function(comment){ return comment.author.id.equals(currentUser._id) }))%>
+                                 <% if(myComments && myComments.length > 0){ %>
+                                      <div id="my-comments" class="comments">
+                                           <h4>Your comments</h4>
+                                           <% myComments.forEach(function(data){ %>
+                                               <div class="row comment-entry">
+                                                    <div class="user-comment-img">
+                                                       <img src="https://euroshop.wwe.com/on/demandware.static/-/Sites-wwe-euro-navigation/default/dw2a6de264/images/superstar-thumb-300/john-cena-2017.jpg"></img>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                       <div>
+                                                           <a class="<%= data.post.uniAcronym.toLowerCase() %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span>
+                                                           <p> <%=data.content%></p>
+                                                       </div>
+                                                       <div class="reply-button">
+                                                           <a href="#" class="btn btn-primary btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
+                                                           <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> <%= data.likes.length %> </span>
+                                                           <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a><%= data.dislikes.length %></span>
+                                                       </div>
+                                                       <% if (data.replies.length == 0){ %>
+                                                           <div class="reply-form">
+                                                               <form>
+                                                                   <textarea class="form-control" rows="2"></textarea>
+                                                                   <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
+                                                               </form>
+                                                           </div>
+                                                       <% } %>
+                                                    </div>
+                                                </div>
+                                            <% }) %>
+                                            <hr>
+                                      </div>
+                                 <% } %>
+                             <% } %>
                              <div class="comments">
+                                   <% if(currentUser){  %>
+                                      <% post.comments = (post.comments.filter(function(comment){ return !comment.author.id.equals(currentUser._id) })) %>
+                                   <% } %>
+                                   
                                    <% post.comments.forEach(function(data){ %>
                                        <div class="row comment-entry">
                                             <div class="user-comment-img">
@@ -57,11 +97,11 @@
                                             </div>
                                             <div class="comment-content">
                                                <div>
-                                                   <a class="<%= post.university.acronym %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span>
+                                                   <a class="<%= data.post.uniAcronym.toLowerCase() %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span>
                                                    <p> <%=data.content%></p>
                                                </div>
                                                <div class="reply-button">
-                                                   <a href="#" class="btn btn-primary btn-sm <%= post.university.acronym %>-button ">Reply</a> 
+                                                   <a href="#" class="btn btn-primary btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
                                                    <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> <%= data.likes.length %> </span>
                                                    <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a><%= data.dislikes.length %></span>
                                                </div>
@@ -69,7 +109,7 @@
                                                    <div class="reply-form">
                                                        <form>
                                                            <textarea class="form-control" rows="2"></textarea>
-                                                           <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= post.university.acronym %>-button" value="Post"></input>
+                                                           <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
                                                        </form>
                                                    </div>
                                                <% } %>

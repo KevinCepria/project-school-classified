@@ -16,7 +16,6 @@ router.post("/files/:university/:id/comments", middleware.isLoggedIn, function(r
 
               request.body.comment.content = request.sanitize(request.body.comment.content);
               var formData = request.body.comment
-              var data = [];
               Comment.create(formData, function(error, comment){
                    if(error){
                        
@@ -46,9 +45,7 @@ router.post("/files/:university/:id/comments", middleware.isLoggedIn, function(r
                         
                         if(request.xhr){
                             
-                            data.push(comment);
-                            data.push(post.university.acronym);
-                            response.json(data);
+                            response.json(comment);
                             
                         } 
                         else {
