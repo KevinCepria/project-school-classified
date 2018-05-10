@@ -99,14 +99,16 @@ $(document).ready(function(e) {
     
     autosize($('textarea'));
     
-    $('textarea').on('input', function(e){
+    $('#post-form textarea').on('input', function(e){
         
-        if( $('textarea').val().trim().length <= 15000){
-          $(".counter").text( $('textarea').val().trim().length);
+        let content = $(this);
+        
+        if( content.val().trim().length <= 15000){
+          $(".counter").text( content.val().trim().length);
         }
         
         else{
-          $(this).val($(this).val().trim().slice(0, 15000));
+          content.val(content.val().trim().slice(0, 15000));
           alert('Maximum Character Limit Reached');
         }
     })

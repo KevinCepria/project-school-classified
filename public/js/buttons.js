@@ -6,7 +6,7 @@ var animPulse = 'animated pulse';
 
 $(document).ready(function(e) {   
   
-  $(".comments").on("click",".reply-button .btn", function(event){
+  $(".comment-section").on("click",".reply-button .btn", function(event){
 
       event.preventDefault();
       $(this).blur();
