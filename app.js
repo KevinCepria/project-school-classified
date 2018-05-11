@@ -13,7 +13,7 @@ methodOverride = require("method-override"),
       Comment  = require("./models/comment"),
          Reply = require("./models/reply"),
         expressSanitizer = require("express-sanitizer");
-        
+
 //requiring routes
 var postRoutes    = require("./routes/post"),
    commentRoutes = require("./routes/comment"),
