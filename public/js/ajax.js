@@ -2,6 +2,17 @@ var $, moment;
 var animationEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
 $(document).ready(function(e) {   
   
+  // $(document).ajaxStart(function(){
+  //   errorMsg($(".error-msg"), "Ajax request detected");
+    
+  // });
+  
+  $(document).ajaxComplete(function(){
+    $('.la-ball-pulse-sync').remove();
+  });
+    
+  
+  
   // Ajax processs in adding comments to the database and prepending the new comment
   $(".comment-form form").submit(function(event){
       event.preventDefault();
@@ -10,8 +21,46 @@ $(document).ready(function(e) {
       var error = $(".error-msg");
       var url = form.attr("action");
       $(this).children("button").blur();
+      
+      
+      if($("#my-comments").length === 0){
+          
+          $('.comments').prepend(
+          `<div class="la-ball-pulse-sync">
+                <div></div>
+                <div></div>
+                <div></div>
+          </div>`);
+      }
+      else{
+           $('#my-comments h4').after(
+            `<div class="la-ball-pulse-sync">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+            </div>`);
+      }
+        
       $.post(url, formData, function(data){
           
+          // if($("#my-comments").length === 0){
+              
+          //     $('.comments').prepend(
+          //     `<div class="la-ball-pulse-sync">
+          //           <div></div>
+          //           <div></div>
+          //           <div></div>
+          //     </div>`);
+          // }
+          // else{
+          //     $('#my-comments h4').after(
+          //       `<div class="la-ball-pulse-sync">
+          //             <div></div>
+          //             <div></div>
+          //             <div></div>
+          //       </div>`);
+          // }
+        
           
           if(data.errors){
             
@@ -39,7 +88,7 @@ $(document).ready(function(e) {
                     </div>
                     <div class="comment-content">
                       <div>
-                          <a class="${data.post.uniAcronym}-text"><strong>${data.author.username}</strong></a><span class="time-stamp"><strong>  • ` + creation + `</strong></span>
+                          <a class="${data.post.uniAcronym}-text"><strong>${data.author.username}</strong></a><span class="time-stamp"><strong>  • ` + creation + `</strong></span><span class="caret"></span>
                           <p> ${data.content}</p>
                       </div>
                       <div class="reply-button">
