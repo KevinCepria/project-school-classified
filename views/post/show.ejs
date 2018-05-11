@@ -62,7 +62,14 @@
                                                     </div>
                                                     <div class="comment-content">
                                                        <div>
-                                                           <a class="<%= data.post.uniAcronym.toLowerCase() %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span> <span class="caret"></span>
+                                                           <a class="<%= data.post.uniAcronym.toLowerCase() %>-text"><strong><%= data.author.username %></strong></a><span class="time-stamp"><strong> • <%= moment(data.creationDate).fromNow() %></strong></span> 
+                                                            <li class="dropdown response">
+                                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                                                              <ul class="dropdown-menu">
+                                                                <li><a href="/profile"><i class="fas fa-edit" aria-hidden="true"> </i> Edit</a></li>
+                                                                <li><a href="/logout"><i class="fa fa-times" aria-hidden="true"> </i> Delete</a></li>
+                                                              </ul>
+                                                            </li>
                                                            <p> <%=data.content%></p>
                                                        </div>
                                                        <div class="reply-button">

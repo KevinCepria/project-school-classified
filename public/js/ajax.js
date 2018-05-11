@@ -2,11 +2,7 @@ var $, moment;
 var animationEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd';
 $(document).ready(function(e) {   
   
-  // $(document).ajaxStart(function(){
-  //   errorMsg($(".error-msg"), "Ajax request detected");
-    
-  // });
-  
+
   $(document).ajaxComplete(function(){
     $('.la-ball-pulse-sync').remove();
   });
@@ -39,28 +35,9 @@ $(document).ready(function(e) {
                   <div></div>
                   <div></div>
             </div>`);
-      }
+       }
         
       $.post(url, formData, function(data){
-          
-          // if($("#my-comments").length === 0){
-              
-          //     $('.comments').prepend(
-          //     `<div class="la-ball-pulse-sync">
-          //           <div></div>
-          //           <div></div>
-          //           <div></div>
-          //     </div>`);
-          // }
-          // else{
-          //     $('#my-comments h4').after(
-          //       `<div class="la-ball-pulse-sync">
-          //             <div></div>
-          //             <div></div>
-          //             <div></div>
-          //       </div>`);
-          // }
-        
           
           if(data.errors){
             
@@ -88,7 +65,14 @@ $(document).ready(function(e) {
                     </div>
                     <div class="comment-content">
                       <div>
-                          <a class="${data.post.uniAcronym}-text"><strong>${data.author.username}</strong></a><span class="time-stamp"><strong>  • ` + creation + `</strong></span><span class="caret"></span>
+                          <a class="${data.post.uniAcronym}-text"><strong>${data.author.username}</strong></a><span class="time-stamp"><strong>  • ` + creation + `</strong></span>
+                          <li class="dropdown response">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="/profile"><i class="fas fa-edit" aria-hidden="true"> </i> Edit</a></li>
+                              <li><a href="/logout"><i class="fa fa-times" aria-hidden="true"> </i> Delete</a></li>
+                            </ul>
+                          </li>
                           <p> ${data.content}</p>
                       </div>
                       <div class="reply-button">

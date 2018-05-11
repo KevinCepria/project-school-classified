@@ -6,7 +6,7 @@ body{
     font-family: "Bowlby One SC";
 }
 
-a{
+a, .response{
     cursor:pointer;
 }
 
@@ -275,6 +275,35 @@ a{
     margin: 0 10px;
     border-radius: 15px;
     float:left;
+}
+
+hr{
+     border: solid 1px rgba(0,0,0,0.6);
+}
+
+.response{
+     float: right;
+     list-style: none;
+     display:none;
+}
+
+.response a{
+    color: rgba(0,0,0,0.6);
+}
+
+.response .dropdown-menu{
+    min-width: 110px;
+    right: 0;
+    left: inherit;
+    font-size: 13px;
+}
+
+.response>.dropdown-menu>li>a{
+    color:  rgba(0,0,0,0.7);
+}
+
+.comment-entry:hover .response{
+    display: block;
 }
 
 .reply-button{
