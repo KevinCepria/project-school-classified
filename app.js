@@ -19,7 +19,7 @@ var postRoutes    = require("./routes/post"),
    commentRoutes = require("./routes/comment"),
    indexRoutes   = require("./routes/index");
  
-var url = process.env.DATABASEURL || "mongodb://localhost/dbv4";
+var url = process.env.DATABASEURL || "mongodb://localhost/dbv5";
 mongoose.connect(url);
 
 app.use(express.static(__dirname + "/public"));

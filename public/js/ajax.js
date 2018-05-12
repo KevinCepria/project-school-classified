@@ -53,8 +53,8 @@ $(document).ready(function(e) {
                 $(".comment-form").after(
                   `<div id="my-comments" class="comments">
                         <h4>Your comments</h4>
-                   </div>
-                   <hr>`
+                        <hr>
+                   </div>`
                   );  
               }
               
@@ -70,7 +70,7 @@ $(document).ready(function(e) {
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/profile"><i class="fas fa-edit" aria-hidden="true"> </i> Edit</a></li>
-                              <li><a href="/logout"><i class="fa fa-times" aria-hidden="true"> </i> Delete</a></li>
+                              <li><a href="/files/${data.post.uniAcronym.toUpperCase()}/${data.post.id}/comments/${data._id}?_method=DELETE" class="delete-response"><i class="fa fa-times" aria-hidden="true"> </i> Delete</a></li>
                             </ul>
                           </li>
                           <p> ${data.content}</p>
@@ -95,6 +95,31 @@ $(document).ready(function(e) {
       });
   });
   
+  $(".comment-section").on("click",".delete-response", function(event){
+    event.preventDefault();
+    var comment = $(this);
+    var url = $(this).attr('href');
+    console.log(url);
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: url,
+        // timeout: 5000,
+        success: function(data, textStatus ){
+      
+           comment.parentsUntil(".comment-entry").parent().fadeOut(300, function(){
+                 
+                 
+                 ($(this).siblings(".comment-entry").length <= 0)?   $(this).parent().remove() : $(this).remove();
+                     
+           });
+           
+        },
+        error: function(xhr, textStatus, errorThrown){
+           alert('request failed');
+        }
+    });
+  })
   function errorMsg(error, message){
      
         error.html('')

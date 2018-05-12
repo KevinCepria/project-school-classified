@@ -63,14 +63,42 @@ router.post("/files/:university/:id/comments", middleware.isLoggedIn, function(r
     
 });
 
-//editing comment process
-router.put("/files/:university/:id/comments/:comment_id", middleware.checkCommentOwnerShip, function(request, response){
+//editing delete process
+router.delete("/files/:university/:id/comments/:comment_id", middleware.checkCommentOwnerShip, function(request, response){
+   
+    
+     Post.findById(request.params.id).exec(function(error, post){
+          if(error){
+                  console.log(error)
+          }
+          else{
+                   Comment.findByIdAndRemove(request.params.comment_id, function(error){
+                   if(error){
+                       console.log(error)
+                   } else {
+                       console.log("success")
+                       
+                       var index = post.comments.findIndex(function(v){
+                             return v == request.params.comment_id;
+                        });
+                        console.log(index);
+                        
+                        post.comments.splice(index,1);
+                        
+                        post.save();
+                       
+                        response.json(null);
+                   }
+                });
+                          
+          }
+     });
     
 });
 
 
-//deleting comment process
-router.delete("/files/:university/:id/comments/:comment_id", middleware.checkCommentOwnerShip, function(request, response){
+//updating comment process
+router.put("/files/:university/:id/comments/:comment_id", middleware.checkCommentOwnerShip, function(request, response){
     
 });
 
