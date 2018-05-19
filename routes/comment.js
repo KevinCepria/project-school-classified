@@ -81,10 +81,8 @@ router.delete("/files/:university/:id/comments/:comment_id", middleware.checkCom
                        var index = post.comments.findIndex(function(v){
                              return v == request.params.comment_id;
                         });
-                        console.log(index);
-                        
+   
                         post.comments.splice(index,1);
-                        
                         post.save();
                        
                         response.json(null);
@@ -99,10 +97,17 @@ router.delete("/files/:university/:id/comments/:comment_id", middleware.checkCom
 
 //updating comment process
 router.put("/files/:university/:id/comments/:comment_id", middleware.checkCommentOwnerShip, function(request, response){
-    
+       Comment.findByIdAndUpdate(request.params.comment_id, request.body.comment,{new:true}, function(error, updatedComment){
+          if(error){
+              console.log(error)
+          } else {
+              
+              (request.xhr)? response.json(updatedComment.content) : response.redirect("/files/"+request.params.university+"/"+request.params.id)
+              
+          }
+       });
+   
 });
-
-
 
 module.exports = router;
 

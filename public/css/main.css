@@ -10,6 +10,10 @@ a, .response{
     cursor:pointer;
 }
 
+textarea{
+    resize: none;
+}
+
 .jumbotron {
     
     margin-top: 70px;
@@ -233,6 +237,7 @@ a, .response{
 
 .comment-entry{
     margin-bottom: 25px;
+    position: relative;
 }
 
 .like-button{
@@ -298,7 +303,7 @@ hr{
     font-size: 13px;
 }
 
-.response>.dropdown-menu>li>a{
+.response >.dropdown-menu>li>a{
     color:  rgba(0,0,0,0.7);
 }
 
@@ -320,9 +325,64 @@ hr{
     
 }
 
+ .modal {
+    padding: 0 !important ;
+ }
+ 
+ .modal-dialog{
+     top:50%;
+     transform: translateY(-60%)!important;
+ }
+ 
+ .modal-body{
+     padding: 3px;
+ }
 
+ .modal-header{
+     background-color: #222;
+     color: rgba(255,255,255,0.8);
+     border: 1px solid #222;
+ }
+ 
+ .modal-header span{
+     color: rgba(255,255,255,0.7)
+ }
+ 
+ .modal-header span:hover{
+     color: rgba(255,0,0,0.7);
+ }
+ 
+ .modal-footer{
+     text-align: center; 
+     background: rgba(0,0,0,0.1);
+ }
+ 
+ .modal-footer button{
+     width:80%;
+     margin: 0 0 7px 0;
+     transition: width 0.5s;
+     padding: 10px 0;
+ } 
+ 
+  .modal-footer button:hover{
+     width:85%;
+ } 
+ 
+ 
+ .modal-footer > .cancel-edit{
+     background:#7b1113;
+     color:rgba(255,255,255,0.9);
+ }
+ 
+ .modal-footer > .update-response{
+     background:#00703C;
+     color:rgba(255,255,255,0.9);
+ }
+ 
  .navbar-brand{
+     
      padding : 0 8px 5px 5px;
+     
  }
  .navbar-brand img{
      display: inline-block;
@@ -330,6 +390,9 @@ hr{
      height:50px;
  }
  
+ .blur{
+     opacity: 0.55;
+ }
 /*
 ================================== 
       css for register form
@@ -339,11 +402,12 @@ hr{
      top: 20vh;
      position: relative;
  }
+ 
  #register-form {
       
       margin: auto;
       border: solid 1px rgba(0,0,0,0.2);
-      position: relative;
+      position: relative;            
       padding: 0 ;
       border-radius: 10px;
       box-shadow: 5px 5px 8px 3px rgba(0,0,0,0.6);

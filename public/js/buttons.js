@@ -85,15 +85,8 @@ $(document).ready(function(e) {
         });
   });
   
-  $(".comment-form").on("click","button", function(){
-        $(this).addClass(animJello).one(animationEnd, function(event){
-             $(this).removeClass(animJello)
-        });
-  });
-  
   
   /* Logic for register button */
-  
    $("#register-form .register").submit(function (event){
         
          var userID=$(this).find("#userID");
