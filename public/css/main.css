@@ -40,7 +40,7 @@ textarea{
    position: relative;
 }
 
-.dlsu-button:hover, .dlsu-button:focus, .dlsu-button:active{
+.dlsu-button:hover, .dlsu-button:focus, .dlsu-button:active,.dlsu-button:disabled{
    background: #00703C;
    color:white;
    outline: 0;
@@ -67,7 +67,7 @@ textarea{
    position: relative;
 }
 
-.up-button:hover, .up-button:focus, .up-button:active{
+.up-button:hover, .up-button:focus, .up-button:active, .up-button:disabled{
    background: #7b1113;
    color:white;
    outline: 0;
@@ -93,7 +93,7 @@ textarea{
    position: relative;
 }
 
-.admu-button:hover, .admu-button:focus, .admu-button:active{
+.admu-button:hover, .admu-button:focus, .admu-button:active, .admu-button:disabled{
    background: #092972;
    color:white;
    outline: 0;
@@ -120,7 +120,7 @@ textarea{
    position: relative;
 }
 
-.ust-button:hover, .ust-button:focus, .ust-button:active{
+.ust-button:hover, .ust-button:focus, .ust-button:active, .ust-button:disabled{
    background:#fdcd3d;
    color:white;
    outline: 0;
@@ -330,8 +330,7 @@ hr{
  }
  
  .modal-dialog{
-     top:50%;
-     transform: translateY(-60%)!important;
+     top:8%;
  }
  
  .modal-body{

@@ -16,9 +16,13 @@ $(document).ready(function(e) {
   $(".comment-form form").submit(function(event){
       event.preventDefault();
       let form = $(this);
-      let formData = $(this).serialize();
+      let formData = form.serialize();
       let url = form.attr("action");
-      $(this).children("button").blur();
+      let submitButton = form.children("button");
+      
+      submitButton
+      .blur()
+      .attr("disabled",true);
       
       
       if($("#my-comments").length === 0){
@@ -78,14 +82,14 @@ $(document).ready(function(e) {
                           <p class="comment-text"> ${data.content}</p>
                       </div>
                       <div class="reply-button">
-                          <a href="#" class="btn btn-primary btn-sm ${data.post.uniAcronym}-button ">Reply</a> 
+                          <a href="#" class="btn btn-sm ${data.post.uniAcronym}-button ">Reply</a> 
                           <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> ${data.likes.length}</span>
                           <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a>${data.dislikes.length}</span>
                       </div>
                           <div class="reply-form">
                               <form>
                                   <textarea class="form-control" rows="2"></textarea>
-                                  <input type="submit"  class="btn btn-primary btn-sm btn-sm ${data.post.uniAcronym}-button" value="Post"></input>
+                                  <input type="submit"  class="btn btn-sm ${data.post.uniAcronym}-button" value="Post"></input>
                               </form>
                           </div>
                     </div>
@@ -94,6 +98,8 @@ $(document).ready(function(e) {
               form.children(".form-control").val("");
               autosize.update(form.children(".form-control"));
           }
+          
+          submitButton.attr("disabled",false);
       });
   });
   

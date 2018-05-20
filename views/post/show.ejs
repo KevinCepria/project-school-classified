@@ -46,7 +46,7 @@
                                    <form method="POST" action="/files/<%= post.university.acronym.toUpperCase() %>/<%= post.id %>/comments">
                                         <textarea class="form-control" name="comment[content]" placeholder="Type your comment here..." rows="3"></textarea>
                                         
-                                        <button class="btn btn-primary btn-md <%= post.university.acronym %>-button" > Comment <i class="fas fa-comments fa-lg" ></i></button>
+                                        <button class="btn <%= post.university.acronym %>-button" > Comment <i class="fas fa-comments fa-lg" ></i></button>
                                    </form>
                              </div>
                              
@@ -73,7 +73,7 @@
                                                            <p class="comment-text"> <%=data.content%></p>
                                                        </div>
                                                        <div class="reply-button">
-                                                           <a href="#" class="btn btn-primary btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
+                                                           <a href="#" class="btn btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
                                                            <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> <%= data.likes.length %> </span>
                                                            <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a><%= data.dislikes.length %></span>
                                                        </div>
@@ -81,7 +81,7 @@
                                                            <div class="reply-form">
                                                                <form>
                                                                    <textarea class="form-control" rows="2"></textarea>
-                                                                   <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
+                                                                   <input type="submit"  class="btn btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
                                                                </form>
                                                            </div>
                                                        <% } %>
@@ -108,7 +108,7 @@
                                                    <p> <%=data.content%></p>
                                                </div>
                                                <div class="reply-button">
-                                                   <a href="#" class="btn btn-primary btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
+                                                   <a href="#" class="btn btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button ">Reply</a> 
                                                    <span class="like-button"><a class="regular"><i class="far fa-thumbs-up fa-lg"></i></a> <%= data.likes.length %> </span>
                                                    <span class="dislike-button"><a class="regular"><i class="far fa-thumbs-down fa-lg"></i></a><%= data.dislikes.length %></span>
                                                </div>
@@ -116,7 +116,7 @@
                                                    <div class="reply-form">
                                                        <form>
                                                            <textarea class="form-control" rows="2"></textarea>
-                                                           <input type="submit"  class="btn btn-primary btn-sm btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
+                                                           <input type="submit"  class="btn btn-sm <%= data.post.uniAcronym.toLowerCase() %>-button" value="Post"></input>
                                                        </form>
                                                    </div>
                                                <% } %>
