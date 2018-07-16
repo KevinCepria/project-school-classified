@@ -206,7 +206,7 @@
                        </div>
                   </div>
                       <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <form class="edit-response-form" method="POST" >
@@ -218,6 +218,8 @@
                             <textarea class="form-control" name="comment[content]"></textarea>
                           </div>
                           <div class="modal-footer">
+                            <div class="error-msg">
+                            </div>
                             <button type="submit" class="btn update-response">Update</button>
                             <button type="button" class="btn cancel-edit" data-dismiss="modal">Cancel</button>
                           </div>

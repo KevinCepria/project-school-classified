@@ -97,7 +97,6 @@ $(document).ready(function(e) {
            
     });
     
-    autosize($('textarea'));
     
     $('#post-form textarea').on('input', function(e){
         
@@ -112,5 +111,8 @@ $(document).ready(function(e) {
           alert('Maximum Character Limit Reached');
         }
     })
+    
+    // $("textarea").emojioneArea();
+    autosize($('textarea'));
     
 });

@@ -37,14 +37,14 @@ middleware.checkCommentOwnerShip = function(request, response, next){
                 if(comment.author.id.equals(request.user._id)){
                      next();
                 } else{
-                     response.redirect("back")
+                     (request.xhr)?response.json({errors:"You are not allowed to do that"}): response.redirect("back");
                 }
             }
                
          })
     } else {
         
-        response.redirect("back")
+        (request.xhr)?response.json({errors:"You need to be logged in to do that"}): response.redirect("/login");
     }
 }
 
@@ -59,14 +59,15 @@ middleware.checkReplyOwnerShip = function(request, response, next){
                 if(reply.author.id.equals(request.user._id)){
                      next();
                 } else{
-                     response.redirect("back")
+                    
+                     (request.xhr)?response.json({errors:"You are not allowed to do that"}): response.redirect("back");
                 }
             }
                
          })
     } else {
         
-        response.redirect("back")
+         (request.xhr)?response.json({errors:"You need to be logged in to do that"}): response.redirect("/login");
     }
     
 }

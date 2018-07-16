@@ -3,7 +3,8 @@ var animationEnd = 'animationend oAnimationEnd mozAnimationEnd webkitAnimationEn
 $(document).ready(function(e) {
   
   var commentObj;
-  var error = $(".error-msg");
+  var error = $(".comment-section .error-msg");
+  var errModal = $("#myModal .error-msg");
   
 
   $(document).ajaxComplete(function(){
@@ -11,14 +12,15 @@ $(document).ready(function(e) {
   });
     
   
-  
   // Ajax processs in adding comments to the database and prepending the new comment
   $(".comment-form form").submit(function(event){
       event.preventDefault();
       let form = $(this);
       let formData = form.serialize();
+       console.log(form);
       let url = form.attr("action");
       let submitButton = form.children("button");
+      console.log(formData);
       
       submitButton
       .blur()
@@ -108,7 +110,7 @@ $(document).ready(function(e) {
     event.preventDefault();
     let comment = $(this).parents(".comment-entry");
     let url = $(this).attr('href');
-    let circleLoader = $(".circle-wrapper")
+    let circleLoader;
     
     $.ajax({
         type: 'DELETE',
@@ -136,13 +138,23 @@ $(document).ready(function(e) {
               </div>
             </div>
          `)
+          circleLoader = $(".circle-wrapper");
         }
-    }).then(function(event){
-           comment.fadeOut(300, function(){
-                error.html('');
-                ($(this).siblings(".comment-entry").length <= 0)?   $(this).parent().remove() : $(this).remove();
-                     
-          });
+    }).then(function(data){
+           if(data){
+             errorMsg(error,data.errors);
+             comment.removeClass("blur");
+             circleLoader.remove();
+           }
+           else{
+               
+               comment.fadeOut(300, function(){
+                  error.html('');
+                  ($(this).siblings(".comment-entry").length <= 0)?   $(this).parent().remove() : $(this).remove();
+                       
+               });
+           }
+           
     }).catch(function(event){
            errorMsg(error,"Ooops! Something went wrong. Connection "+event.statusText)
            comment.removeClass("blur")
@@ -156,9 +168,9 @@ $(document).ready(function(e) {
       event.preventDefault();
       
       let editResponse = $(this)
-            commentObj = editResponse.parentsUntil(".comment-body").siblings(".comment-text")
+            commentObj = editResponse.parents(".comment-body").find(".comment-text")
       let commentText = commentObj.text();
-      
+        
       $("#myModal").modal("show");
       
       $(".edit-response-form").attr("action",editResponse.attr("href"));
@@ -172,40 +184,87 @@ $(document).ready(function(e) {
       
   });
   
+  //removes action attribute and empties text area when eidting is cancelled
   $(".cancel-edit").click(function(){
     
       let editForm = $(this).parent().parent();
       
        editForm.removeAttr("action");
        editForm.children("textarea").val("");
-    
   });
   
+  // updates comment/reply and loads loaders for ajax
   $(".edit-response-form").submit(function(event){
     
       event.preventDefault();
+      let modal = $("#myModal");
+      let modalDialog = modal.find(".modal-dialog");
       let form = $(this);
       let newItem= $(this).serialize();
       let url = $(this).attr("action");
+      let circleLoader;
       $.ajax({
         type: 'PUT',
         data: newItem,
         dataType: 'json',
         url: url,
-        // timeout: 5000,
-        success: function(data, textStatus ){
-          
-          commentObj.text(data);
-          $("#myModal").modal("hide");
-          commentObj = null;
-          
+        beforeSend: function(){
+            modalDialog.append(`
+            <div class="check_mark">
+               <div class="sk-circle">
+                  <div class="sk-circle1 sk-child"></div>
+                  <div class="sk-circle2 sk-child"></div>
+                  <div class="sk-circle3 sk-child"></div>
+                  <div class="sk-circle4 sk-child"></div>
+                  <div class="sk-circle5 sk-child"></div>
+                  <div class="sk-circle6 sk-child"></div>
+                  <div class="sk-circle7 sk-child"></div>
+                  <div class="sk-circle8 sk-child"></div>
+                  <div class="sk-circle9 sk-child"></div>
+                  <div class="sk-circle10 sk-child"></div>
+                  <div class="sk-circle11 sk-child"></div>
+                  <div class="sk-circle12 sk-child"></div>
+              </div>
+            </div>`);
+            circleLoader = $(".check_mark");
         },
+        timeout: 45000,
+          
+        success: function(data, textStatus ){
+            if(data.errors){
+                errorMsg(errModal, data.errors, modal);
+                circleLoader.remove();
+            }
+            else{
+                commentObj.text(data);
+                commentObj = null;
+                errModal.empty();
+                circleLoader.empty();
+                circleLoader.append(`
+                    <div class="sa-icon sa-success animate">
+                      <span class="sa-line sa-tip animateSuccessTip"></span>
+                      <span class="sa-line sa-long animateSuccessLong"></span>
+                      <div class="sa-placeholder"></div>
+                      <p>UPDATED</p>
+                    </div>
+               `);
+               
+              setTimeout(function(){
+                  modal.modal("hide");
+                  circleLoader.remove();
+              },1200)
+            }
+        },
+        
         error: function(xhr, textStatus, errorThrown){
-           alert('request failed');
+             
+            errorMsg(errModal, "Ooops! Something went wrong. Connection " + textStatus);
+            circleLoader.remove();
         }
       });
 
   })
+  
   function errorMsg(error, message){
      
         error.html('')
@@ -214,6 +273,12 @@ $(document).ready(function(e) {
               ).addClass("animated bounceIn").one(animationEnd, function(){
                 error.removeClass("animated bounceIn");
               });
+        
+        if(!isScrolledIntoView(error)){
+            $('html, body').animate({
+                    scrollTop: ($(error).offset().top- 100)
+                }, 600);
+        }
   }
   
   
